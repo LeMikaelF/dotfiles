@@ -1,26 +1,34 @@
-"Section vim-plug*******************************************
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+map sh <C-w>h
+map sk <C-w>k
+map sj <C-w>j
+map sl <C-w>l
 
+set path+=**
+set wildmenu
+set wildignore+=**/node_modules/**
+set hidden
 
-call plug#begin('~/.vim/bundle')
-Plug 'Ergodis/vim-bepo'
+nnoremap <space> :
+
+inoremap kj <ESC>
+inoremap jk <ESC>
+
+cnoremap kj <C-c>
+cnoremap jk <C-c>
+
+tnoremap jk <C-w><C-w>
+tnoremap kj <C-w><C-w>
+
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
+
+command! Bd bp|bd #
+
+autocmd TerminalOpen * if bufwinnr('') > 0 | setlocal nobuflisted | endif
+" autocmd TerminalOpen * setlocal nobuflisted
+autocmd TerminalOpen * set nonu
+
+call plug#begin('~/.vim/plugged')
+Plug 'ap/vim-buftabline'
 call plug#end()
-"Section vim-bepo*******************************************
 
-"Paramètres de vim-bepo
-
-let g:bepo_permut_w = 0
-""let g:bepo_map_bepo_azerty = 0
-
-let g:bepo_permut_maj_numb = 0
-let g:bepo_map_qwerty = 1
-let g:bepo_color_nbsp = 0
-let g:bepo_disp_hidden = 0
-
-
-autocmd BufReadPost * call BepoInit() 
-"Fin de vim-bepo*********************************************
